@@ -1,0 +1,113 @@
+su root
+
+apt-get install sudo -y
+
+adduser username sudo
+
+exit
+
+reboot
+
+sudo apt update
+
+sudo apt install git
+
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install python3 python3-dev python3-venv -y
+
+sudo apt install python3-pip
+
+sudo apt install curl
+
+sudo apt install mariadb-server
+
+sudo mysql_secure_installation
+
+sudo systemctl start mariadb.service
+
+sudo apt install wget
+
+wget https://r.mariadb.com/downloads/mariadb_repo_setup
+
+chmod +x mariadb_repo_setup
+
+sudo ./mariadb_repo_setup \
+   --mariadb-server-version="mariadb-10.6"
+
+sudo apt install libmariadb3 libmariadb-dev
+
+sudo apt install gcc
+
+sudo apt install openssl
+
+pip3 install mariadb==1.1.10
+
+python3 -c "import mariadb"
+
+------------------------------------------------------
+git clone 方式2选一, 请确保该项目授权下载
+
+1. 使用ssh git clone 如下：
+
+ssh-keygen
+
+ls ~/.ssh
+
+cat ~/.ssh/id_rsa.pub
+
+复制密匙到你的github SSH KEY设置，详情请查看github文档
+
+2. 使用https git clone 如下：
+直接复制 https://github.com/ApplyU-ai-Framework/Applyu-Server.git
+---------------------------------------------------------
+
+cd Desktop
+
+git clone git@github.com:ApplyU-ai-Framework/Applyu-Server.git (或https://github.com/ApplyU-ai-Framework/Applyu-Server.git)
+
+cd Applyu-Server
+
+pip install SQLAlchemy
+
+
+------------------------------------------------------------
+Please ignore this If you are deploying the server. The following operations are recommended. If you want to perform single-file testing, the virtual environment location will make it easier for developers to debug.
+(如果你是部署服务器人员，请忽略此处。建议以下操作如果你想进行单文件测试，虚拟环境位置会更加方便开发人员的调试工作。需要部署本地的开发人员请注意此处。)
+
+python3 -m venv venv 
+source venv/bin/activate  (此命令是进入环境工作)
+
+Continue with the remaining configuration when you done this part(接下来请继续剩下的命令配置)
+------------------------------------------------------------
+
+
+pip freeze > requirements.txt
+
+pip install -r requirements.txt
+
+exit
+
+------------------------------------------------------------
+本地的开发人员继续留意此处：
+
+1.安装并打开vscode，找到项目路径并打开。
+
+2.在vscode的插件处安装python插件
+
+3.在vscode里打开terminal（命令行）并进入项目 （cd 
+Desktop/Applyu-Server）
+
+4. 确认是否进入之前创建的虚拟环境venv，当前头显示为(venv)代表你已进入虚拟环境，如没有就输入 source venv/bin/activate
+
+5.在applyu_services/models/conn.py，填写或更改已分配的开发人员登录数据的用户名和密码（user，password）然后填写或更改数据库的ip地址（即服务器ip），保存
+
+6. 与相关人员确认数据库是否有变动（图表tables有所更改或增加），如有，点击右键data_mods.py复制它路径到modeling.py相应的路径，保存存。然后继续右键点击modeling.py负责它的路径，在vscode里的terminal（命令行）输入：python3 modeling.py的路径 ，（参考：python3 home/username/Desktop/Applyu Server/applyu_services/models/modeling.py），然后运行，此时会更新了一份最新的data_mods.py
+
+7. 最后复制文件夹applyu_services到venv/lib/python3.10/site-packages。（注意，如果有额外的外部包新增，你可能仍需进行此步骤，复制更新vevn/lib/python3.10/site-packages里面的applyu_services文件夹）
+
+------------------------------------------------------------
+（最后是额外，退出虚拟环境命令为deactivate，没有什么特殊情况不需要进行此命令，因为方便下次打开vscode会默认进入）
+------------------------------------------------------------
+
+部署完毕，如无意外，你可以尽情享受你的开发之旅 ！ Good luck, have a fun ! ~~~~ TED ^<>^
